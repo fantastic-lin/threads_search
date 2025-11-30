@@ -1,0 +1,33 @@
+# Fixed parameters that rarely change; keywords are passed via the command line
+params:
+  # ---------- General export/cleaning configuration (shared by both modes) ----------
+  out: csv               # Output format: csv | xlsx | json | gsheets | preview
+  clean: "1"             # "1" or "0" (keep as string for compatibility with your current parser)
+  validate: "1"          # "1" or "0"
+  time_format: local     # local | utc
+  emoji_format: emoji    # emoji | alias
+  basename: null         # Optional; custom export filename prefix
+
+  # ---------- Keyword mode (run_keyword_export) ----------
+  limit: 10
+  limitMode: per         # per | total
+  searchType: TOP        # TOP | LATEST  
+  searchMode: KEYWORD    # KEYWORD | TAG
+  mediaType: TEXT        # TEXT | IMAGE | VIDEO | ALL
+  since: null            # e.g., "2025-01-01"
+  until: null            # e.g., "2025-12-31"
+
+  # Term frequency (used only in keyword mode; safe to keep default if unused)
+  scope: history         # The code reads "scope" (not "termfreq_scope")
+  topn: 50               # The code reads "topn" (not "termfreq_topn")
+  outdir: data/keyword_store
+  keywordExportDir: data/keyword_store
+
+  # ---------- Username mode (run_user_posts) ----------
+  max_posts: 10           # Total fetch limit across all usernames
+  per_max: 3             # Fetch limit per username (default = max_posts)
+  sleep_s: 0.15          # Pause duration (seconds) between users
+  user_store_dir: data/user_store   # Deduplication/history cache directory
+  usernameExportDir: data/user_store
+  persist_ext: json       # Cache file extension
+                 
